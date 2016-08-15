@@ -9,14 +9,15 @@
   "keywords": [
     "chat"
   ],
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/C1one-38/chat.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/C1one-38/chat.git"
   },
   "author": "C1one_38",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0",
+    "koa": "^1.2.1",
+    "koa-route": "^2.4.2",
     "socket.io": "^1.4.8"
   }
 }
