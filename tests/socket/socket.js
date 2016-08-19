@@ -16,8 +16,6 @@ describe('socket router', function() {
   it('should route to different controllers on events', function() {
 
     it('should call login controller on login event', function() {
-      io.connect();
-      sinon.spy();
 
     });
 

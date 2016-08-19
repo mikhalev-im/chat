@@ -1,3 +1,5 @@
+'use strict';
+
 const koa = require('koa'),
       route = require('koa-route'),
       app = module.exports = koa(),
@@ -9,52 +11,39 @@ const koa = require('koa'),
       http = require('http'),
       serve = require('koa-static');
 
-// x-response-time
 
-app.use(function *(next) {
-  let start = new Date;
-  yield next;
-  let ms = new Date - start;
-  this.set('X-Response-Time', ms + 'ms');
-});
-
-// logger
-
-app.use(function *(next) {
-  let start = new Date;
-  yield next;
-  var ms = new Date - start;
-  console.log('%s %s - %s ms', this.method, this.url, ms);
-});
+app.use(logger);
 
 // static files handler
-
 app.use(serve(__dirname + '/public'));
 
 // homepage render
-
 app.use(route.get('/', index));
 
-function *index() {
-  this.body = yield readFile('./app/views/index.html');
-};
 
-function readFile(src) {
-  return new Promise(function(resolve, reject) {
-    fs.readFile(src, {'encoding': 'utf8'}, function(err, data) {
+function *logger(next) {
+  let start = new Date;
+  yield next;
+  let ms = new Date - start;
+  console.log('%s %s - %s ms', this.method, this.url, ms);
+}
+
+function *index() {
+  this.body = yield new Promise(function(resolve, reject) {
+    fs.readFile('./app/views/index.html', {'encoding': 'utf8'}, function(err, data) {
       if (err) return reject(err);
       resolve(data);
     });
   });
-}
+};
 
 // create server instance
-
 const server = http.createServer(app.callback());
+
+// configure sockets
 socket(server);
 
 // start the server
-
 server.listen(config.server.port, function(err) {
   if (err) {
     console.log('Error when starting the server: ' + err);
