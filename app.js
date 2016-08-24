@@ -8,9 +8,8 @@ const koa = require('koa'),
       fs = require('fs'),
       Promise = require('bluebird'),
       co = require('co'),
-      http = require('http'),
+      https = require('https'),
       serve = require('koa-static');
-
 
 app.use(logger);
 
@@ -38,7 +37,12 @@ function *index() {
 };
 
 // create server instance
-const server = http.createServer(app.callback());
+const options = {
+  key: fs.readFileSync('./certs/localhost.key'),
+  cert: fs.readFileSync('./certs/localhost.crt')
+}
+
+const server = https.createServer(options, app.callback());
 
 // configure sockets
 socket(server);

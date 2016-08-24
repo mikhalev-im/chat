@@ -1,4 +1,4 @@
-Chat app using Koa, Socket.io and Angular2
+Chat app using Koa, Socket.io, React, Redux, Webpack
 
 User stories:
   - User can visit homepage and see login/register form

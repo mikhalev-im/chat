@@ -10,6 +10,7 @@ module.exports = function(server) {
 
     socket.on('login', function() {
       console.log('Login event');
+      io.emit('message', {});
     });
 
     socket.on('register', function() {

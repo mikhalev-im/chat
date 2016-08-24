@@ -21,11 +21,18 @@
     "koa": "^1.2.1",
     "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
-    "sinon": "^1.17.5"
+    "sinon": "^1.17.5",
+    "webpack": "^1.13.2"
   }
 }
