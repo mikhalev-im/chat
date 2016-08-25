@@ -3,13 +3,31 @@ import ReactDOM from 'react-dom';
 
 class Message extends React.Component {
   render() {
+    var i = 0;
     return (
-      <p className='message'>{this.props.message}</p>
+      <div>
+        {this.props.messages.map( (m) => <p key = {i++} className='message'>{m.nick + ": " + m.message}</p> )}
+      </div>
     );
   }
 }
 
-ReactDOM.render(
-  <Message message="HEY HEY HEY" />,
-  document.getElementById('example')
-)
+let mes = [];
+
+function renderMessages() {
+  ReactDOM.render(
+    <Message messages={mes} />,
+    document.getElementById('messages')
+  )
+}
+
+export function addMessage(message) {
+  mes.push(message);
+  renderMessages();
+}
+
+
+
+
+
+

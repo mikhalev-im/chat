@@ -21,8 +21,9 @@ module.exports = function(server) {
       console.log('Room event');
     });
 
-    socket.on('message', function() {
+    socket.on('message', function(data) {
       console.log('Message event');
+      socket.broadcast.emit('message', data);
     });
 
   });
