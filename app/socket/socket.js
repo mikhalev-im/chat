@@ -4,6 +4,7 @@ let io = require('socket.io');
 
 module.exports = function(server) {
   io = io(server);
+  let messageId = 1;
 
   io.on('connection', function(socket) {
     console.log('Socket connection, id: ' + socket.id);
@@ -23,7 +24,9 @@ module.exports = function(server) {
 
     socket.on('message', function(data) {
       console.log('Message event');
+      data.id = messageId++;
       socket.broadcast.emit('message', data);
+      socket.emit('message', data);
     });
 
   });

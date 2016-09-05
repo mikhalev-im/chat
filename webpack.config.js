@@ -8,6 +8,8 @@ module.exports = {
     filename: 'app.bundle.js'
   },
 
+  watch: true,
+
   module: {
     loaders: [{
       test: /\.js[x]{0,1}$/,
